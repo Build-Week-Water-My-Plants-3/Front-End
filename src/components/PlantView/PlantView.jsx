@@ -14,7 +14,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 
 import { useParams } from "react-router-dom";
 
-import { tipWorker } from "../../store/actions/userActions";
+import { waterPlant } from "../../store/actions/userActions";
 import { axiosWithAuth } from "../../utils/axiosAuth";
 
 const useStyles = makeStyles({
@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     margin: "25px auto",
     textAlign: "center"
   },
-  tipContainer: {
+  waterContainer: {
     marginTop: 25,
     display: "flex",
     justifyContent: "space-around"
@@ -33,7 +33,7 @@ const useStyles = makeStyles({
     width: "40%",
     marginTop: 10
   },
-  tipInput: {
+  waterInput: {
     width: "40%"
   },
   title: {
@@ -50,52 +50,52 @@ const useStyles = makeStyles({
   }
 });
 
-const WorkerView = () => {
+const PlantView = () => {
   const dispatch = useDispatch();
-  const { isTipping, tipMessage } = useSelector(state => {
+  const { isWatering, waterMessage } = useSelector(state => {
     return {
-      isTipping: state.userReducer.isTipping,
-      tipMessage: state.userReducer.tipMessage
+      isWatering: state.userReducer.isWatering,
+      waterMessage: state.userReducer.waterMessage
     };
   });
   const params = useParams();
   const classes = useStyles();
   const user = useSelector(state => state.userReducer.user);
-  const { id } = params; //The id of the worker that we want to view
+  const { id } = params; //The id of the plant that we want to view
 
-  const [worker, setWorker] = useState({
+  const [plant, setPlant] = useState({
     name: user.name,
     info: user.info,
     tagline: user.tagline
   });
-  const [tipAmount, setTipAmount] = useState(0);
+  const [waterAmount, setwaterAmount] = useState(0);
 
   useEffect(() => {
     axiosWithAuth()
-      .get(`/api/worker/${id}`)
+      .get(`/api/plant/${id}`)
       .then(res => {
-        setWorker({
+        setPlant({
           name: res.data.name,
-          info: res.data.info,
-          tagline: res.data.tagline,
-          months: res.data.month_at_job
+          species: res.data.species,
+          days_to_water: res.data.days_to_water,
+          // months: res.data.month_at_job
         });
       })
       .catch(err => console.log(err));
   }, [id]);
 
-  const handleTipClick = () => {
-    dispatch(tipWorker(id, tipAmount));
+  const handleWaterClick = () => {
+    dispatch(waterPlant(id, waterAmount));
   };
 
   return (
     <Card className={classes.card}>
       <CardContent>
         <Typography className={classes.title} gutterBottom>
-          {worker.name}
+          {plant.name}
         </Typography>
         <Typography className={classes.info} color="textSecondary">
-          {worker.info}
+          {plant.info}
         </Typography>
         <Typography
           className={classes.tagLine}
@@ -103,26 +103,26 @@ const WorkerView = () => {
           variant="body2"
           component="p"
         >
-          "{worker.tagline}"
+          "{plant.tagline}"
         </Typography>
-        {tipMessage && tipMessage.length > 0 ? (
+        {waterMessage && waterMessage.length > 0 ? (
           <Typography className={classes.info} color="textSecondary">
-            {tipMessage}
+            {waterMessage}
           </Typography>
         ) : (
           false
         )}
-        <div className={classes.tipContainer}>
-          <FormControl className={classes.tipInput}>
+        <div className={classes.waterContainer}>
+          <FormControl className={classes.waterInput}>
             <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
             <Input
               id="standard-adornment-amount"
               type="number"
-              value={tipAmount}
-              onChange={e => setTipAmount(e.target.value)}
-              placeholder="Tip me well!"
+              value={waterAmount}
+              onChange={e => setwaterAmount(e.target.value)}
+              placeholder="Water me!"
               startAdornment={
-                <InputAdornment position="start">$</InputAdornment>
+                <InputAdornment position="start">*</InputAdornment>
               }
             />
           </FormControl>
@@ -130,8 +130,8 @@ const WorkerView = () => {
             variant="contained"
             className={classes.button}
             color="secondary"
-            disabled={isTipping}
-            onClick={handleTipClick}
+            disabled={isWatering}
+            onClick={handleWaterClick}
           >
             Tip
           </Button>
@@ -141,4 +141,4 @@ const WorkerView = () => {
   );
 };
 
-export default WorkerView;
+export default PlantView;

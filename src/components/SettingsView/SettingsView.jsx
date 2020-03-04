@@ -57,11 +57,11 @@ const DeleteButton = withStyles(theme => ({
 }))(Button);
 const SettingsView = () => {
   const dispatch = useDispatch();
-  const { info, name, tagline, month_at_job, id } = useSelector(
+  const { info, name, tagline, species, id } = useSelector(
     state => state.userReducer.user
   );
   const updatedUser = useSelector(state => state.userReducer.updatedUser);
-  const userFormData = { info, name, tagline, month_at_job };
+  const userFormData = { info, name, tagline, species };
   const [formData, setFormData] = useState(userFormData);
   const [snackOpen, setSnackOpen] = useState(false);
   const classes = useStyles();
@@ -135,12 +135,12 @@ const SettingsView = () => {
           />
           <TextField
             className={classes.monthTextField}
-            label="Months At Job"
-            type="number"
-            name="month_at_job"
+            label="Species"
+            // type="number"
+            name="species"
             margin="normal"
             onChange={handleChange}
-            value={formData.month_at_job}
+            value={formData.species}
             variant="outlined"
           />
         </div>

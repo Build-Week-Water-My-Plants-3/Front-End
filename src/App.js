@@ -4,12 +4,12 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import NavBar from "./components/NavBar/NavBar";
 import UserForm from "./components/Registration/UserForm";
-import LogIn from "./components/LogIn";
+import LogIn from "./components/Login/LogIn";
 import Dashboard from "./components/Dashboard/Dashboard";
 import { useDispatch, useSelector } from "react-redux";
 import { updateApp, register, getUser } from "./store/actions/userActions";
-import WorkerView from "./components/WorkerView/WorkerView";
-import Profile from "./components/Profile/Profile";
+import PlantView from "./components/PlantView/PlantView";
+import PlantProfile from "./components/PlantProfile/PlantProfile";
 import SettingsView from "./components/SettingsView/SettingsView";
 
 function App() {
@@ -18,9 +18,9 @@ function App() {
   console.log("CURRENT REDUX USER: ", user);
   useEffect(() => {
     dispatch(updateApp());
-    // dispatch(
-    //   register({ username: "new", password: "test", isServiceWorker: 1 })
-    // );
+    dispatch(
+      register({ username: "new", password: "test", isPlantParent: 1 })
+    );
   }, [dispatch]);
 
   return (
@@ -38,10 +38,10 @@ function App() {
           <Dashboard />
         </PrivateRoute>
         <PrivateRoute path="/profile">
-          <Profile />
+          <PlantProfile />
         </PrivateRoute>
-        <PrivateRoute path="/worker/:id">
-          <WorkerView />
+        <PrivateRoute path="/plant/:id">
+          <PlantView />
         </PrivateRoute>
         <PrivateRoute path="/settings">
           <SettingsView />

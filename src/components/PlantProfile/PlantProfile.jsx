@@ -1,5 +1,10 @@
 // PLACEHOLDER FOR HEALTH TO REPLACE TIPS, ALSO NEED TO REFACTOR FOR TAGLINE AND MONTHS AT JOB
-
+// - `id`: Integer
+	// - `nickname`: String
+	// - `species` : String
+	// - `h2oFrequency`: Type determined by implementation
+  // - `image`: optional
+  
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -40,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: 30,
     textAlign: "center"
   },
-  info: {
+  species: {
     fontSize: 16
   },
   header: {
@@ -67,8 +72,8 @@ const PlantProfile = () => {
   const { id } = useSelector(state => state.plantReducer.plant);
   const [plant, setPlant] = useState({
     name: "",
-    info: "",
-    // month_at_job: 0, /* replace with day last watered*/
+    species: "",
+    days_week_water: 0
     // tagline: "",
     // tip: ""
   });
@@ -96,14 +101,14 @@ const PlantProfile = () => {
       <div className={classes.sectionRow}>
         <div className={classes.leftSection}>
           <Typography className={classes.header} variant="h5" component="h3">
-            Info
+            species
           </Typography>
           <Typography
-            className={classes.info}
+            className={classes.species}
             color="textSecondary"
             component="p"
           >
-            {plant.info}
+            {plant.species}
           </Typography>
         </div>
 
@@ -112,11 +117,11 @@ const PlantProfile = () => {
             Months At Job
           </Typography>
           <Typography
-            className={classes.info}
+            className={classes.species}
             color="textSecondary"
             component="p"
           >
-            {plant.month_at_job}
+            {plant.days_week_water}
           </Typography>
         </div>
       </div>
@@ -127,7 +132,7 @@ const PlantProfile = () => {
             Tagline
           </Typography>
           <Typography
-            className={classes.info}
+            className={classes.species}
             color="textSecondary"
             component="p"
           >
@@ -140,7 +145,7 @@ const PlantProfile = () => {
             Account ID
           </Typography>
           <Typography
-            className={classes.info}
+            className={classes.species}
             color="textSecondary"
             component="p"
           >

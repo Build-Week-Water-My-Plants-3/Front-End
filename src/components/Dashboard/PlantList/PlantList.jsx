@@ -57,7 +57,7 @@ const PlantList = () => {
           return (
             <PlantCard
               name={plant.name}
-              blurb={plant.tagline}
+              blurb={plant.species}
               image={getRandomPlantAvatar()}
               id={plant.plant_id}
               key={index}

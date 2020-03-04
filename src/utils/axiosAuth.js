@@ -4,7 +4,7 @@ import axios from "axios";
 export const axiosWithAuth = () => {
   const token = localStorage.getItem("authToken");
   return axios.create({
-    baseURL: "https://REPLACEBEURLHERE.herokuapp.com",
+    baseURL: "https://water-my-plants-bw-3.herokuapp.com/",
     headers: {
       "Content-Type": "application/json",
       Authorization: `${token}`

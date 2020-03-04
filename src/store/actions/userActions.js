@@ -1,4 +1,5 @@
-// TO DO: REFACTOR WITH PLANTS INSTEAD OF WORKERS
+// TO DO: REFACTOR WITH PLANTS INSTEAD OF WORKERS, MATCH UP OR EDIT BE ENDPOINTS IF NECESSARY
+
 import axios from "axios";
 import { axiosWithAuth } from "../../utils/axiosAuth";
 
@@ -17,6 +18,7 @@ export const APP_UPDATE = "APP_UPDATE";
 export const FETCH_PLANTS_START = "FETCH_PLANTS_START";
 export const FETCH_PLANTS_SUCCESS = "FETCH_PLANTS_SUCCESS";
 export const FETCH_PLANTS_FAIL = "FETCH_PLANTS_FAIL";
+// MAKE PLANTS UPDATE AND DELETE 
 
 export const FETCH_USER_START = "FETCH_USER_START";
 export const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS";
@@ -30,9 +32,9 @@ export const DELETE_USER_START = "DELETE_USER_START";
 export const DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS";
 export const DELETE_USER_FAIL = "DELETE_USER_FAIL";
 
-// export const TIP_START = "TIP_START"; REMINDER INSTEAD OF TIP?
-// export const TIP_SUCCESS = "TIP_SUCCESS";
-// export const TIP_FAIL = "TIP_FAIL";
+export const WATER_START = "WATER_START"; 
+export const WATER_SUCCESS = "WATER_SUCCESS";
+export const WATER_FAIL = "WATER_FAIL";
 
 export const SET_UPDATED_USER_FLAG = "SET_UPDATED_USER_FLAG";
 
@@ -41,7 +43,7 @@ export const login = credentials => dispatch => {
   dispatch({ type: LOGIN_START });
   console.log("Starting login... for: ", credentials);
   axios
-    .post("https://.herokuapp.com/api/auth/login", credentials) /*THIS WILL BE BE HEROKU URL*/
+    .post("https://water-my-plants-bw-3.herokuapp.com/login", credentials) /*THIS WILL BE BE HEROKU URL*/
     .then(res => {
       //Pass token to reducer.
       console.log("LOGIN RESPONSE: ", res);
@@ -74,7 +76,7 @@ export const register = credentials => dispatch => {
 
   axios
     .post(
-      "https://.herokuapp.com/api/auth/register", /*THIS WILL BE BE HEROKU URL*/
+      "https://water-my-plants-bw-3.herokuapp.com/register", /*THIS WILL BE BE HEROKU URL*/
       credentials
     )
     .then(res => {
@@ -91,7 +93,7 @@ export const register = credentials => dispatch => {
 export const getPlants = () => dispatch => {
   dispatch({ type: FETCH_PLANTS_START });
   axiosWithAuth()
-    .get("/api/user")
+    .get("/api/plants/all")
     .then(res => {
       dispatch({ type: FETCH_PLANTS_SUCCESS, payload: res.data });
     })
@@ -143,28 +145,28 @@ export const updateUser = (id, updatedUser) => dispatch => {
       dispatch({ type: UPDATE_USER_FAIL, payload: err.message });
     });
 };
-// REMINDER INSTEAD OF TIP?
-// export const tipWorker = (id, amount) => dispatch => {
-//   dispatch({ type: TIP_START });
+// WATER 
+export const waterPlant = (id, amount) => dispatch => {
+  dispatch({ type: WATER_START });
 
-//   axiosWithAuth()
-//     .get(`/api/worker/${id}`)
-//     .then(res => {
-//       let currentTip = res.data.tip;
-//       currentTip += Math.abs(amount);
-//       axiosWithAuth()
-//         .put(`/api/worker/${id}`, { tip: currentTip })
-//         .then(res => {
-//           console.log(res);
-//           dispatch({ type: TIP_SUCCESS });
-//         })
-//         .catch(err => {
-//           console.log(err);
-//           dispatchEvent({ type: TIP_FAIL, payload: err });
-//         });
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       dispatchEvent({ type: TIP_FAIL, payload: err });
-//     });
-// };
+  axiosWithAuth()
+    .get(`/api/plant/${id}`)
+    .then(res => {
+      let currentWater = res.data.water;
+      currentWater += Math.abs(amount);
+      axiosWithAuth()
+        .put(`/api/plant/${id}`, { water: currentWater })
+        .then(res => {
+          console.log(res);
+          dispatch({ type: WATER_SUCCESS });
+        })
+        .catch(err => {
+          console.log(err);
+          dispatchEvent({ type: WATER_FAIL, payload: err });
+        });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatchEvent({ type: WATER_FAIL, payload: err });
+    });
+};

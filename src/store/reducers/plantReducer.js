@@ -1,10 +1,13 @@
+// REFACTOR USING PLANTS 
+
+
 import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGIN_START,
-    FETCH_WORKERS_FAIL,
-    FETCH_WORKERS_START,
-    FETCH_WORKERS_SUCCESS,
+    FETCH_PLANTS_FAIL,
+    FETCH_PLANTS_START,
+    FETCH_PLANTS_SUCCESS,
     FETCH_USER_FAIL,
     FETCH_USER_START,
     FETCH_USER_SUCCESS,
@@ -20,20 +23,20 @@ import {
     DELETE_USER_START,
     DELETE_USER_SUCCESS,
     SET_UPDATED_USER_FLAG,
-    TIP_FAIL,
-    TIP_START,
-    TIP_SUCCESS
+    WATER_FAIL,
+    WATER_START,
+    WATER_SUCCESS
   } from "../actions/userActions";
   
   const initialState = {
     user: {
       info: "",
-      month_at_job: 0,
+      species: 0,
       name: "",
       tagline: "",
-      tip: 0,
+      days_week_water: 0,
       id: 0,
-      isServiceWorker: false
+      // isServiceWorker: false
     },
   
     isFetchingUser: false,
@@ -51,17 +54,17 @@ import {
     workers: [
       {
         id: 1,
-        info: "37 yr Male living in Florida",
-        month_at_job: 6,
-        name: "Tony",
-        tagline: "We are not in Kansas anymore.",
-        tip: 3,
+        info: "Pretty Plant",
+        species: "",
+        name: "Shrett",
+        tagline: "Feed me Seymour.",
+        // tip: 3,
         user_id: 1
       }
     ],
   
-    isTipping: false,
-    tipMessage: "",
+    isWatering: false,
+    waterMessage: "",
   
     isDeleting: false,
     deleteError: "",
@@ -71,15 +74,15 @@ import {
     updatedUser: false
   };
   
-  export const userReducer = (state = initialState, action) => {
+  export const plantReducer = (state = initialState, action) => {
     switch (action.type) {
-      case TIP_START:
-        return { ...state, isTipping: true, tipMessage: "" };
-      case TIP_FAIL:
-        return { ...state, isTipping: false, tipMessage: "Failed to tip worker" };
+      case WATER_START:
+        return { ...state, isWatering: true, waterMessage: "" };
+      case WATER_FAIL:
+        return { ...state, isWatering: false, waterMessage: "Failed to water plant" };
   
-      case TIP_SUCCESS:
-        return { ...state, isTipping: false, tipMessage: "Tipped!" };
+      case WATER_SUCCESS:
+        return { ...state, isWatering: false, waterMessage: "Watered!" };
       case FETCH_USER_START:
         return { ...state, isFetchingUser: true, fetchUserError: "" };
       case FETCH_USER_FAIL:
@@ -157,19 +160,19 @@ import {
             name: action.payload.user.username
           }
         }; //TODO: Set user data from payload.
-      case FETCH_WORKERS_START:
-        return { ...state, fetchingWorkers: true };
-      case FETCH_WORKERS_SUCCESS:
+      case FETCH_PLANTS_START:
+        return { ...state, fetchingPlants: true };
+      case FETCH_PLANTS_SUCCESS:
         return {
           ...state,
-          fetchingWorkers: false,
-          workers: action.payload
+          fetchingPlants: false,
+          plants: action.payload
         };
-      case FETCH_WORKERS_FAIL:
+      case FETCH_PLANTS_FAIL:
         return {
           ...state,
-          fetchingWorkers: false,
-          fetchWorkersError: action.payload
+          fetchingPlants: false,
+          fetchPlantsError: action.payload
         };
       case SET_UPDATED_USER_FLAG:
         return { ...state, updatedUser: action.payload };
