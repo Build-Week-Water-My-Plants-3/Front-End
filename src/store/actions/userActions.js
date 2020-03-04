@@ -82,7 +82,7 @@ export const register = credentials => dispatch => {
     .then(res => {
       console.log(res);
       dispatch({ type: REGISTER_SUCCESS, payload: res.data });
-      getUser(res.data.userN.id);
+      getUser(res.data.user.id);
     })
     .catch(err => {
       console.log(err);

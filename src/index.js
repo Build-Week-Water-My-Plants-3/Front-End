@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 
 //Reducers
-import { plantReducer } from "./store/reducers/plantReducer";
+import { userReducer } from "./store/reducers/userReducer";
 
 //Theme color imports
 import { ThemeProvider } from "@material-ui/core";
@@ -16,7 +16,7 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import grey from "@material-ui/core/colors/grey";
 import green from "@material-ui/core/colors/green";
 
-const rootReducer = combineReducers({ plantReducer });
+const rootReducer = combineReducers({ userReducer });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 

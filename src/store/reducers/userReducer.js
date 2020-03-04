@@ -49,8 +49,8 @@ import {
     isRegistering: false,
     registerError: "",
   
-    fetchingWorkers: false,
-    fetchWorkersError: "",
+    fetchingPlants: false,
+    fetchPlantsError: "",
     workers: [
       {
         id: 1,
@@ -74,7 +74,7 @@ import {
     updatedUser: false
   };
   
-  export const plantReducer = (state = initialState, action) => {
+  export const userReducer = (state = initialState, action) => {
     switch (action.type) {
       case WATER_START:
         return { ...state, isWatering: true, waterMessage: "" };
@@ -110,7 +110,7 @@ import {
         return { ...state, isRegistering: true, registerError: "" };
       case REGISTER_SUCCESS:
         localStorage.setItem("authToken", action.payload.token);
-        localStorage.setItem("userID", action.payload.userN.id);
+        localStorage.setItem("userID", action.payload.user.id);
         return { ...state, isRegistering: false, loggedIn: true };
       case REGISTER_FAIL:
         return { ...state, isRegistering: false, registerError: action.payload };

@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const PlantProfile = () => {
-  const { id } = useSelector(state => state.plantReducer.plant);
+  const { id } = useSelector(state => state.userReducer.plant);
   const [plant, setPlant] = useState({
     name: "",
     species: "",
