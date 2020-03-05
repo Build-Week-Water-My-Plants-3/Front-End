@@ -102,7 +102,7 @@ export const getPlants = () => dispatch => {
     });
 };
 
-export const getUser = id => dispatch => {
+export const getUser = (id=1) => dispatch => {
   dispatch({ type: FETCH_USER_START });
   axiosWithAuth()
     .get(`/api/user/${id}`)
