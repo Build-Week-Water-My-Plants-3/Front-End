@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import FormUserDetails from "./FormUserDetails";
 import Confirm from "./Confirm";
 import { Redirect } from "react-router-dom";
-import axios from 'axios'
+// import axios from 'axios'
+import { axiosWithAuth } from "../../../utils/axiosAuth";
 import { useSelector, useDispatch } from "react-redux";
 import { register } from "../../store/actions/userActions";
 
@@ -18,8 +19,8 @@ const UserForm = props => {
   });
 
   useEffect(() => {
-      axios
-      .post("https://water-my-plants-bw-3.herokuapp.com/register")
+    axiosWithAuth()
+      .post("/api/register")
       .then(res => {
           console.log(res.data)
           setUsers(res.data)
