@@ -118,7 +118,8 @@ export const getUser = (id=1) => dispatch => {
 
 export const updateApp = () => dispatch => {
   const loggedIn = localStorage.getItem("authToken") ? true : false;
-  const id = parseInt(localStorage.getItem("userID"), 10);
+  const id = 1
+  // parseInt(localStorage.getItem("userID"), 10);
   dispatch(getUser(id));
   const updates = { loggedIn, id };
   dispatch({ type: APP_UPDATE, payload: updates });
