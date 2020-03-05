@@ -11,7 +11,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/actions/userActions";
 function Copyright() {
@@ -61,6 +61,8 @@ export default function LogIn(props) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   console.log("Logged: ", loggedIn);
+  const history = useHistory();
+
   const onChangeNameHandler = event => {
     event.preventDefault();
     return setUserName(event.target.value);
@@ -69,12 +71,12 @@ export default function LogIn(props) {
     event.preventDefault();
     return setPassword(event.target.value);
   };
-
+  
   const onSubmitHandler = event => {
     event.preventDefault();
     dispatch(login({ username: userName, password }));
      setLoggedIn(true);
-     return loggedIn && <Redirect to="/dashboard" />
+     return history.push(`/dashboard`)
     // redux logic for form submission goes here!
   };
 
