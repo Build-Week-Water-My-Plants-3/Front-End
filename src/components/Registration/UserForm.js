@@ -3,7 +3,7 @@ import FormUserDetails from "./FormUserDetails";
 import Confirm from "./Confirm";
 import { Redirect } from "react-router-dom";
 // import axios from 'axios'
-import { axiosWithAuth } from "../../../utils/axiosAuth";
+import { axiosWithAuth } from "../../utils/axiosAuth";
 import { useSelector, useDispatch } from "react-redux";
 import { register } from "../../store/actions/userActions";
 
