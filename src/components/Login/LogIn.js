@@ -74,7 +74,7 @@ export default function LogIn(props) {
     event.preventDefault();
     dispatch(login({ username: userName, password }));
      setLoggedIn(true);
-     return <Redirect to="/dashboard" />
+     return loggedIn && <Redirect to="/dashboard" />
     // redux logic for form submission goes here!
   };
 
