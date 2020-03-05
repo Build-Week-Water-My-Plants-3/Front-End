@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: "500",
     letterSpacing: 2
   },
-  health: {
+  Plant: {
     fontSize: 50,
     textAlign: "center",
     fontWeight: "bold",
@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const PlantProfile = () => {
-  const { id } = useSelector(state => state.userReducer.plant);
+  const { id } = useSelector(state => state.userReducer.user);
   const [plant, setPlant] = useState({
     name: "",
     species: "",
@@ -94,14 +94,14 @@ const PlantProfile = () => {
         {plant.name}
       </Typography>
       <Divider className={classes.divider} />
-      <Typography className={classes.health} variant="h5" component="h3">
-        <span className={classes.healthTitle}>Health</span> ${plant.health}
+      <Typography className={classes.plant} variant="h5" component="h3">
+        <span className={classes.plantTitle}>Plant</span> {plant.plant}
       </Typography>
       <Divider className={classes.divider} />
       <div className={classes.sectionRow}>
         <div className={classes.leftSection}>
           <Typography className={classes.header} variant="h5" component="h3">
-            species
+            Species
           </Typography>
           <Typography
             className={classes.species}
@@ -114,7 +114,7 @@ const PlantProfile = () => {
 
         <div className={classes.rightSection}>
           <Typography className={classes.header} variant="h5" component="h3">
-            Months At Job
+            Day Last Watered
           </Typography>
           <Typography
             className={classes.species}
@@ -142,7 +142,7 @@ const PlantProfile = () => {
 
         <div className={classes.rightSection}>
           <Typography className={classes.header} variant="h5" component="h3">
-            Account ID
+            Plant ID
           </Typography>
           <Typography
             className={classes.species}

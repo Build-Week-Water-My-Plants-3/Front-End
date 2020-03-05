@@ -155,7 +155,7 @@ export const waterPlant = (id, amount) => dispatch => {
       let currentWater = res.data.water;
       currentWater += Math.abs(amount);
       axiosWithAuth()
-        .put(`/api/plant/${id}`, { water: currentWater })
+        .put(`/plants/edit/${id}`, { water: currentWater })
         .then(res => {
           console.log(res);
           dispatch({ type: WATER_SUCCESS });

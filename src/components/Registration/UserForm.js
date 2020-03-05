@@ -17,14 +17,14 @@ const UserForm = props => {
     checkedA: false
   });
 
-  // useEffect(() => {
-  //     axios
-  //     .post("https://water-my-plants-bw-3.herokuapp.com/register")
-  //     .then(res => {
-  //         console.log(res.data)
-  //         setUsers(res.data)
-  //     })
-  // })
+  useEffect(() => {
+      axios
+      .post("https://water-my-plants-bw-3.herokuapp.com/register")
+      .then(res => {
+          console.log(res.data)
+          setUsers(res.data)
+      })
+  })
 
 
   if (loggedIn) return <Redirect to="/dashboard" />;

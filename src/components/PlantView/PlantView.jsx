@@ -17,6 +17,7 @@ import { useParams } from "react-router-dom";
 import { waterPlant } from "../../store/actions/userActions";
 import { axiosWithAuth } from "../../utils/axiosAuth";
 
+import mockPlants from '../../mockData/mockPlants'
 const useStyles = makeStyles({
   card: {
     width: "80%",
@@ -49,8 +50,12 @@ const useStyles = makeStyles({
     fontStyle: "italic"
   }
 });
+// slicing off the last part of the url, as it's the plant ID
+
 
 const PlantView = () => {
+  const mockPlantId = window.location.pathname.slice(-1) -1;
+  const mockPlant = mockPlants[mockPlantId]
   const dispatch = useDispatch();
   const { isWatering, waterMessage } = useSelector(state => {
     return {
@@ -63,31 +68,27 @@ const PlantView = () => {
   const user = useSelector(state => state.userReducer.user);
   const { id } = params; //The id of the plant that we want to view
 
-  const [plant, setPlant] = useState({
-    name: user.name,
-    info: user.info,
-    tagline: user.tagline
-  });
+  const [plant, setPlant] = useState(mockPlant);
   const [waterAmount, setwaterAmount] = useState(0);
 
-  useEffect(() => {
-    axiosWithAuth()
-      .get(`/api/plant/${id}`)
-      .then(res => {
-        setPlant({
-          name: res.data.name,
-          species: res.data.species,
-          days_to_water: res.data.days_to_water,
-          // months: res.data.month_at_job
-        });
-      })
-      .catch(err => console.log(err));
-  }, [id]);
+  // useEffect(() => {
+  //   axiosWithAuth()
+  //     .get(`/api/plant/${id}`)
+  //     .then(res => {
+  //       setPlant({
+  //         name: res.data.name,
+  //         species: res.data.species,
+  //         days_to_water: res.data.days_to_water,
+  //         // months: res.data.month_at_job
+  //       });
+  //     })
+  //     .catch(err => console.log(err));
+  // }, [id]);
 
   const handleWaterClick = () => {
     dispatch(waterPlant(id, waterAmount));
   };
-
+console.log(window.location)
   return (
     <Card className={classes.card}>
       <CardContent>
@@ -95,16 +96,9 @@ const PlantView = () => {
           {plant.name}
         </Typography>
         <Typography className={classes.info} color="textSecondary">
-          {plant.info}
+          {plant.blurb}
         </Typography>
-        <Typography
-          className={classes.tagLine}
-          color="textSecondary"
-          variant="body2"
-          component="p"
-        >
-          "{plant.tagline}"
-        </Typography>
+        <img style={{width:'50%'}}src={plant.image}/>
         {waterMessage && waterMessage.length > 0 ? (
           <Typography className={classes.info} color="textSecondary">
             {waterMessage}
@@ -114,7 +108,7 @@ const PlantView = () => {
         )}
         <div className={classes.waterContainer}>
           <FormControl className={classes.waterInput}>
-            <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
+            <InputLabel htmlFor="standard-adornment-amount">In How Many Days?</InputLabel>
             <Input
               id="standard-adornment-amount"
               type="number"
@@ -133,7 +127,7 @@ const PlantView = () => {
             disabled={isWatering}
             onClick={handleWaterClick}
           >
-            Tip
+            WATER
           </Button>
         </div>
       </CardContent>

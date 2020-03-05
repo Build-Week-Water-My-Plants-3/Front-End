@@ -56,7 +56,8 @@ const useStyles = makeStyles(theme => ({
 export default function LogIn(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { loggedIn, isLoggingIn } = useSelector(state => state.userReducer);
+  // const { loggedIn, isLoggingIn } = useSelector(state => state.userReducer);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   console.log("Logged: ", loggedIn);
@@ -72,10 +73,12 @@ export default function LogIn(props) {
   const onSubmitHandler = event => {
     event.preventDefault();
     dispatch(login({ username: userName, password }));
+     setLoggedIn(true);
+     return <Redirect to="/dashboard" />
     // redux logic for form submission goes here!
   };
 
-  if (loggedIn) return <Redirect to="/dashboard" />;
+  // if (loggedIn) return <Redirect to="/dashboard" />;
 
   return (
     <Container component="main" maxWidth="xs">
@@ -122,7 +125,7 @@ export default function LogIn(props) {
             color="primary"
             className={classes.submit}
             onClick={onSubmitHandler}
-            disabled={isLoggingIn}
+            // disabled={isLoggingIn}
           >
             Log In
           </Button>
