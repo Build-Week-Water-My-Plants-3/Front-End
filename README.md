@@ -1,23 +1,14 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Water My Plants
 
-In the project directory, you can run:
+ WaterMyPlants will remind users when its time to quench your plants' thirst.
 
-### `yarn start`
+### Motivation
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Ensuring that all your plants are consistently watered is actually pretty difficult. Water My Plants is an app that helps to solve those problems with an easy to use interface for creating a plant watering schedule tailored to each individual plant.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
+### Build Status
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -25,44 +16,37 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tech/framework used
 
-### `yarn eject`
+Built with
+Create React App
+Material UI
+Node JS
+Swift
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Features
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+iOS Component [iOS](https://github.com/Build-Week-Water-My-Plants-3/ios)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Installation of project
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+ Clone your OWN version of Repo.
+ Create a new Branch locally: git checkout -b <firstName-lastName>.
+ Run npm i to download dependencies.
+ Run the server using npm start
+ Implement the project on this Branch, committing progress & changes often.
+ Push commits: git push origin <firstName-lastName>.
 
-## Learn More
+### API Reference
+Api Documentation [Backend](https://github.com/Build-Week-Water-My-Plants-3/backend/blob/master/README.md)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### How to use
+Visit the site to register, login, and start using [Watermyplants](https://front-end-topaz-mu.now.sh/login)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Credits
+Built in collaboration with:
+Zack Ballenger, Blake Price, Craig Swanson, Denis Cedeño, Dustin Guillen, and Laura Theimer. 
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### License
+MIT © Shanda Woods 
