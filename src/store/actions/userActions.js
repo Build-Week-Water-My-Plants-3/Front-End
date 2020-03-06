@@ -133,7 +133,7 @@ export const updateUser = (id, updatedUser) => dispatch => {
   dispatch({ type: UPDATE_USER_START });
 
   axiosWithAuth()
-    .put(`/api/user/${id}`, { id, ...updatedUser })
+    .put(`/api/edituser/${id}`, { id, ...updatedUser })
     .then(res => {
       console.log(res);
       dispatch({ type: UPDATE_USER_SUCCESS, payload: res.data });
