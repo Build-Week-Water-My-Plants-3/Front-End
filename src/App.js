@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import { Route, Switch, Redirect } from "react-router-dom";
+
+import Data from "./components/DustinRender.js/DustinData";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import NavBar from "./components/NavBar/NavBar";
 import UserForm from "./components/Registration/UserForm";
@@ -47,6 +49,7 @@ function App() {
           <SettingsView />
         </PrivateRoute>
       </Switch>
+      <Data />
     </div>
   );
 }
