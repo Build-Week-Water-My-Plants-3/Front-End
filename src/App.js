@@ -1,6 +1,10 @@
-import React, { useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import "./App.css";
 import { Route, Switch, Redirect } from "react-router-dom";
+
+import axios from "axios";
+
+import Data from "./components/DustinRender.js/DustinData";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import NavBar from "./components/NavBar/NavBar";
 import UserForm from "./components/Registration/UserForm";
@@ -23,6 +27,15 @@ function App() {
     );
   }, [dispatch]);
 
+  const [Plant, setPlant] = useState([]);
+
+    useEffect(() => {
+        axios
+        .post("https://water-my-plants-bw-3.herokuapp.com/plants/all")
+        .then(response => setPlant(response))
+    })
+
+    console.log("Plant", Plant)
   return (
     <div className="App">
       <NavBar />
@@ -47,6 +60,8 @@ function App() {
           <SettingsView />
         </PrivateRoute>
       </Switch>
+      
+      <Data data={Plant}/>
     </div>
   );
 }

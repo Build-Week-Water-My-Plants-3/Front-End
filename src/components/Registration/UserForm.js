@@ -22,7 +22,7 @@ const UserForm = props => {
     axiosWithAuth()
       .post("/api/register")
       .then(res => {
-          console.log(res.data)
+          console.log("IM RIGHT HERE",res.data)
           setUsers(res.data)
       })
   })
