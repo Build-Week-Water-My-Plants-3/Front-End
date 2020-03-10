@@ -21,7 +21,7 @@ const UserForm = props => {
       axios
       .post("https://water-my-plants-bw-3.herokuapp.com/register")
       .then(res => {
-          console.log(res.data)
+          console.log("IM RIGHT HERE",res.data)
           setUsers(res.data)
       })
   })
